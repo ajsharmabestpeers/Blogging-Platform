@@ -1,0 +1,19 @@
+<h1>Show Page</h1>
+
+<% if @post %>
+  <h1><%= @post.title %></h1>
+  <p><%= @post.body %></p>
+  <%= link_to 'Back to all posts', posts_path %>
+<% else %>
+  <p>Post not found.</p>
+  <%= link_to 'Back to all posts', posts_path %>
+<% end %>
+
+<h1> Edit Post </h1>
+<ul>
+  <% if @post %>
+    <li><%= link_to "Edit", edit_post_path(@post) %></li>
+  <% else %>
+    <li>No post found to edit.</li>
+  <% end %>
+</ul>
