@@ -2,11 +2,21 @@
 <h1> Create New Post </h1>
 <%= link_to "New Post", new_post_path %>
 
+
 <ul>
   <% @posts.each do |post| %>
-    <li>
+   <li>
       <%= link_to post.title, post%>
-    </li>
-  <% end %>
-</ul>
+   </li>
+   <% end %>
+ </ul>
 
+ <!--
+<% @posts.each do |post| %>
+    <div>
+      <h3><%= post.title %></h3>
+      <p><%= post.body %></p>
+      <%= link_to 'Show', post_path(post) %> 
+    </div>
+  <% end %>
+  -->
