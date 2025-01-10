@@ -43,9 +43,10 @@ gem "bootsnap", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
-
+gem 'ckeditor', '~> 5.0'
 gem "devise" 
 gem 'cancancan'
+
 
 
 group :development, :test do

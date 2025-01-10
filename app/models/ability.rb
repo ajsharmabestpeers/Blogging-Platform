@@ -32,10 +32,16 @@ class Ability
     user ||= User.new   # guest user (not logged in)
     if user.admin?      # Admin can manage all resources
       can :manage, :all
+    
     elsif user.author?  # Author manage own posts (create,edit , update, destroy)
       can :manage, Post 
+      # can :manage , Comment
+      can :manage, Comment, user_id: user.id 
     else
       can :read, Post  # Reader can only read posts
+      # can :manage , Comment
+      can :manage, Comment, user_id: user.id
     end
+   
   end
 end

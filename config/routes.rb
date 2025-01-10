@@ -6,7 +6,14 @@ Rails.application.routes.draw do
     # delete 'posts/:id', to: 'posts#destroy'
 
     # resources :posts  
-    resources :posts, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  
+
+    # resources :posts, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+
+    # resources :comments
+    resources :posts do
+      resources :comments, only: [:create, :destroy ,:show , :edit, :update]
+    end
 
   get 'home/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
