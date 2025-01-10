@@ -15,8 +15,14 @@
   <% else %>
     <li>No post found to edit.</li>
   <% end %>
-  <li><%= link_to "Delete", post_path(@post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></li>
-</ul>
+
+  <% if @post %>
+    <li>  <%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" } %></li>
+  <% else %>
+    <li>No post found to Delete.</li>
+  <% end %>
+
+  </ul>
 
 <% if can? :create, Post %>
   <%= link_to 'New Post', new_post_path %>
@@ -34,8 +40,9 @@
     <%= comment.body %>
   </p>
 
-  <% if comment.user == current_user %>
-    <%= link_to 'Delete', post_comment_path(@post, comment), method: :delete, data: { confirm: 'Are you sure you want to delete this comment?' } %>
+  <% if comment.user == current_user || current_user.admin? || @post.user == current_user %>
+    <%= link_to 'Delete', post_comment_path(@post, comment), method: :delete, data: { confirm: 
+    'Are you sure you want to delete this comment?' } %>
     <%= link_to 'Edit',   edit_post_comment_path(@post, comment) %>
     <% end %>
      

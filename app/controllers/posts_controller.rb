@@ -8,7 +8,7 @@ class PostsController < ApplicationController
     def show
       # @post = Post.find_by(id: params[:id])
       #  @post = Post.find(params[:id])
-      Rails.logger.debug "Params: #{params.inspect}"
+      # Rails.logger.debug "Params: #{params.inspect}"
       @post = Post.find(params[:id])
       @comments = @post.comments.includes(:user)
     end

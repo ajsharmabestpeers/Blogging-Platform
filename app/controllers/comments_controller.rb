@@ -19,19 +19,20 @@ class CommentsController < ApplicationController
       @comment.destroy
       redirect_to @post, notice: 'Comment was successfully deleted.'
     end
+    
     # def edit
     #     @post = Post.find(params[:article_id])
     #     @comment = @post.comments.find(params[:id])
     #   end
 
-    def destroy
-      if @comment.user == current_user
-        @comment.destroy
-        redirect_to @post, notice: 'Comment was successfully deleted.'
-      else
-        redirect_to @post, alert: 'You can only delete your own comments.'
-      end
-    end
+    # def destroy
+    #   if @comment.user == admin 
+    #     @comment.destroy
+    #     redirect_to @post, notice: 'Comment was successfully deleted.'
+    #   else
+    #     redirect_to @post, alert: 'You can only delete your own comments.'
+    #   end
+    # end
 
     def update
       @comment = Comment.find(params[:id])
