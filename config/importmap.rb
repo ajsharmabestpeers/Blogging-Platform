@@ -7,3 +7,5 @@
 # pin "ckeditor", to: "https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"
 
 pin "ckeditor5", to: "ckeditor5/build/ckeditor.js", preload: true
+pin "popper", to: 'popper.js', preload: true
+pin "bootstrap", to: 'bootstrap.min.js', preload: true

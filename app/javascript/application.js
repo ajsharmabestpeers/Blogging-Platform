@@ -2,7 +2,8 @@
 // app/javascript/application.js
 import "@hotwired/turbo-rails"
 import "controllers"
-
+import "popper"
+import "bootstrap"
 // import ClassicEditor from 'ckeditor5/build/ckeditor';
 
 // document.addEventListener("turbolinks:load", function() {
