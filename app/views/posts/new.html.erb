@@ -1,20 +1,30 @@
-<h1> New.html.erb</h1>
+<div class="container mt-1 ">
+  <h1>New Post</h1>
 
-<h1>New Post</h1>
-
-<%= form_with model: @post do |form| %>
+  <%= form_with model: @post do |form| %>
     <%= form.hidden_field :user_id, value: current_user.id %>
-  <div>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
-  </div>
+    
+    <!-- Title Input Field -->
+    <div class="mb-4">
+      <%= form.label :title, class: "form-label" %>
+      <%= form.text_field :title, class: "form-control form-control-lg" %>
+    </div>
 
-  <div>
-    <%= form.label :body %><br>
-    <%= form.text_area :body, class: 'ckeditor'%>
-  </div>
+    <!-- Body Input Field -->
+    <div class="mb-4">
+      <%= form.label :body, class: "form-label" %>
+      <%= form.text_area :body, class: 'form-control form-control-lg ckeditor', style: 'height: 400px; width: 100%;' %>
+    </div>
 
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+    <div class="form_group">
+    <%= form.label :'Upload Image' %>
+    <%= form.file_field :post_images %>
+    </div> </br>
+
+    <!-- Submit Button -->
+    <div class="mb-4">
+      <%= form.submit "Create Post", class: "btn btn-primary btn-lg w-100" %>
+    </div>
+    
+  <% end %>
+</div>

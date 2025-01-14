@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
     # resources :comments
     resources :posts do
-      resources :comments, only: [:create, :destroy ,:show , :edit, :update]
+      resources :comments, only: [:create, :destroy ,:show , :edit, :update , :upload]
     end
 
   get 'home/index'
