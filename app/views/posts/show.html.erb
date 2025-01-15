@@ -2,8 +2,6 @@
 
 <div class="container mt-4">
   <% if @post %>
-
-    <!-- Edit and Delete Links -->
     <div class="row">
       <div class="col-lg-8 offset-lg-2">
       <div class="d-flex justify-content-between">
@@ -32,6 +30,7 @@
         <h2 class="text-center"><%= @post.title %></h2>
         <p class="lead"><%= @post.body.gsub(/<[^>]*>/, '')%></p>
     </div>
+
     <!-- Post Images -->
         <% if @post.post_images.attached? %>
           <div class="row">
@@ -46,7 +45,6 @@
           </div>
         <% end %>
     
-
     <!-- Comments Section -->
     <div class="row">
       <div class="col-lg-8 offset-lg-2">

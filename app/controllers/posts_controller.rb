@@ -3,7 +3,12 @@ class PostsController < ApplicationController
   load_and_authorize_resource
   before_action :set_post, only: [:show, :edit, :update, :destroy]
     def index
-        @posts = Post.all
+        if params[:category_id]
+          @category = Category.find(params[:category_id])
+          @posts = @category.posts
+        else
+          @posts = Post.all
+        end
     end
     
     def show
@@ -55,7 +60,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     end
     def post_params
-      params.require(:post).permit(:title,:user_id,:body ,:post_images)
+      params.require(:post).permit(:title,:user_id,:body ,:post_images ,:category_id)
     end
 end
 

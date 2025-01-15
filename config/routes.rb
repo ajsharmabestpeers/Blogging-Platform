@@ -14,7 +14,10 @@ Rails.application.routes.draw do
     resources :posts do
       resources :comments, only: [:create, :destroy ,:show , :edit, :update , :upload]
     end
-
+    
+    resources :categories, only: [:index, :show, :new, :create] do
+      resources :posts, only: [:index]
+    end
   get 'home/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -1,32 +1,19 @@
-<div class="container mt-2">
-<h1>Index Page</h1>
-<h1> Create New Post </h1>
 
-<%= link_to "New Post", new_post_path , class: 'btn btn-secondary'%>
-
+<h1> Categories Show Page</h1>
+<h1><%= @category.name %> Posts</h1>
 <!--
-<ul>
-  <% @posts.each do |post| %>
-   <li>
-      <%= link_to post.title, post%>
-   </li>
-   <% end %>
- </ul>
-</div>
-
 <% @posts.each do |post| %>
-    <div class="container">
-      <h3><%= post.title %></h3>
-      <p><%= post.body %></p>
-      <%= link_to 'Show', post_path(post) %> 
-    </div>
-    <hr style="height:2px; background-color:black">
-  <% end %>
-</div>
+  <div class="post">
+    <h2><%= link_to post.title, post_path(post) %></h2>
+    <p><%= post.body %></p>
+  </div>
+<% end %>
 -->
+<div class="container mt-4">
+<%= link_to "New Post", new_post_path , class: "btn btn-primary" %>
 <% @posts.each do |post| %>
-  <div class="container mt-4 mb-4 p-3" style="max-width: 1200px;"> <!-- Increased max-width and padding -->
-    <div class="card d-flex flex-column flex-md-row"> <!-- flex-column for small screens, flex-md-row for larger screens -->
+  <div class="container mt-4 mb-4 p-3" style="max-width: 1200px;"> 
+    <div class="card d-flex flex-column flex-md-row">
       <!-- Post Content (Text and Title) -->
       <div class="card-body d-flex flex-column justify-content-between">
         <h3 class="card-title"><%= post.title %></h3>
@@ -44,3 +31,4 @@
     <hr style="height:2px; background-color:#ddd;">
   </div>
 <% end %>
+</div>
