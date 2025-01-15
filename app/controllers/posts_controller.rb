@@ -41,10 +41,14 @@ class PostsController < ApplicationController
     end
     
     def destroy
-      @post.destroy
-      redirect_to posts_url, status: :see_other ,notice: 'Post was successfully destroyed.'
+      if can? :destroy, @post
+        @post.destroy
+        redirect_to posts_url, status: :see_other, notice: 'Post was successfully destroyed.'
+      else
+        redirect_to posts_path, alert: 'You are not authorized to delete this post.'
+      end
     end
-
+    
     private
 
     def set_post

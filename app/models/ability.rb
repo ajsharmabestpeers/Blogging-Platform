@@ -34,7 +34,7 @@ class Ability
       can :manage, :all
     
     elsif user.author?  # Author manage own posts (create,edit , update, destroy)
-      can :manage, Post 
+      can :manage, Post , user_id: user.id
       # can :manage , Comment
       can :manage, Comment, user_id: user.id 
     else

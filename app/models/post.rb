@@ -3,6 +3,6 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true, length: { minimum: 10 }
   has_many :comments ,class_name: 'Comment',dependent: :destroy
-  has_many_attached :post_images 
-
+  has_many_attached :post_images  
+  belongs_to :category
 end

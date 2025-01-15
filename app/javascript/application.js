@@ -4,6 +4,8 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "popper"
 import "bootstrap"
+import Rails from '@rails/ujs'
+Rails.start()
 // import ClassicEditor from 'ckeditor5/build/ckeditor';
 
 // document.addEventListener("turbolinks:load", function() {

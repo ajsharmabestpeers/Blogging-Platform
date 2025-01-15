@@ -5,7 +5,6 @@
 <%= link_to "New Post", new_post_path %>
 
 <!--
-
 <ul>
   <% @posts.each do |post| %>
    <li>
@@ -31,16 +30,15 @@
       <!-- Post Content (Text and Title) -->
       <div class="card-body d-flex flex-column justify-content-between">
         <h3 class="card-title"><%= post.title %></h3>
-        <p class="card-text"><%= truncate(post.body, length: 200) %></p>
+        <p class="card-text"><%= truncate(post.body.gsub(/<[^>]*>/, ''), length: 200) %></p>
         <%= link_to 'Read more', post_path(post), class: 'btn btn-primary' %>
       </div>
 
-      <!-- Post Image (Optional: Replace with actual image URL or path) -->
-      <% if  %>
-        <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*wnLPI2XPit5deHE3.png" class="img-fluid" alt="Post image" style="max-height: 180px; object-fit: cover;">
-      <% else %>
-        <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*wnLPI2XPit5deHE3.png" class="img-fluid" alt="Post image" style="max-height: 180px; object-fit: cover;">
+      <% if post.post_images.attached? %>
+      <% post.post_images.each do |image| %>
+        <%= image_tag image ,style:"width:400px; height:250px;" %>
       <% end %>
+    <% end %>
     </div>
     <!-- Horizontal Divider -->
     <hr style="height:2px; background-color:#ddd;">
