@@ -7,7 +7,6 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= javascript_include_tag 'application' %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
@@ -23,12 +22,17 @@
             <!-- <a class="navbar-brand fw-bold" href="#">  -->
             <!-- <img src="/home/developer/Pictures/BloggingPlateform.png"/>  -->
             <!-- </a>  -->
-
+            
+            <!--<%= form_tag posts_path, method: :get, class: 'd-flex w-50' do %> -->
+            <!--  <%= text_field_tag :q, params[:q], placeholder: 'Search Post...', class: 'form-control me-2' %> -->
+            <!-- <%= submit_tag 'Search', class: 'btn btn-outline-success' %> -->
+            <!--<% end %> -->
+            
             <%= form_tag posts_path, method: :get, class: 'd-flex w-50' do %>
-              <%= text_field_tag :q, params[:q], placeholder: 'Search Post...', class: 'form-control me-2' %>
+              <%= text_field_tag :q, params[:q], placeholder: 'Search by Title or Email...', class: 'form-control me-2' %>
               <%= submit_tag 'Search', class: 'btn btn-outline-success' %>
             <% end %>
-            
+             
             <!-- Toggle button for mobile view -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

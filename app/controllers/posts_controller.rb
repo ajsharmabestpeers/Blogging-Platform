@@ -4,14 +4,17 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   
     def index
-      if params[:category_id]
+     if params[:category_id]
       @category = Category.find(params[:category_id])
       @posts = @category.posts
-      else
-      @posts = params[:q].present? ? Post.search(params[:q]) : Post.all
+     else
+      @posts = Post.all
+     if params[:q].present?
+        @posts = @posts.where('title LIKE ? OR user_id IN (SELECT id FROM users WHERE email LIKE ?)', "%#{params[:q]}%", "%#{params[:q]}%")
       end
+     end
     end
-     
+  
     def show
       # @post = Post.find_by(id: params[:id])
       #  @post = Post.find(params[:id])
@@ -21,7 +24,7 @@ class PostsController < ApplicationController
     
     def new
       @post = Post.new
-      authorize! :create, @post
+      # authorize! :create, @post
       render :new
     end
     
