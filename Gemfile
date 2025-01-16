@@ -49,6 +49,8 @@ gem "sassc-rails"
 gem 'ckeditor', '~> 5.0'
 gem "devise" 
 gem 'cancancan'
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 
 
 

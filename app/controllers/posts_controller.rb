@@ -2,15 +2,16 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  
     def index
-        if params[:category_id]
-          @category = Category.find(params[:category_id])
-          @posts = @category.posts
-        else
-          @posts = Post.all
-        end
+      if params[:category_id]
+      @category = Category.find(params[:category_id])
+      @posts = @category.posts
+      else
+      @posts = params[:q].present? ? Post.search(params[:q]) : Post.all
+      end
     end
-    
+     
     def show
       # @post = Post.find_by(id: params[:id])
       #  @post = Post.find(params[:id])
@@ -63,4 +64,3 @@ class PostsController < ApplicationController
       params.require(:post).permit(:title,:user_id,:body ,:post_images ,:category_id)
     end
 end
-

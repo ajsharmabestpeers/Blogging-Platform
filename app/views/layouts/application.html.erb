@@ -4,7 +4,6 @@
     <title>BloggingPlatform</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= javascript_include_tag 'application' %>
@@ -25,11 +24,11 @@
             <!-- <img src="/home/developer/Pictures/BloggingPlateform.png"/>  -->
             <!-- </a>  -->
 
-            <form class="d-flex w-50">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-
+            <%= form_tag posts_path, method: :get, class: 'd-flex w-50' do %>
+              <%= text_field_tag :q, params[:q], placeholder: 'Search Post...', class: 'form-control me-2' %>
+              <%= submit_tag 'Search', class: 'btn btn-outline-success' %>
+            <% end %>
+            
             <!-- Toggle button for mobile view -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

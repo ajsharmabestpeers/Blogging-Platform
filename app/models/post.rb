@@ -6,5 +6,6 @@ class Post < ApplicationRecord
   has_many :comments ,class_name: 'Comment',dependent: :destroy
   has_many_attached :post_images  
   belongs_to :category
+  include Searchable
   
 end

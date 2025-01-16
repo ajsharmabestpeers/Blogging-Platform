@@ -2,8 +2,7 @@
 <h1>Index Page</h1>
 <h1> Create New Post </h1>
 
-<%= link_to "New Post", new_post_path , class: 'btn btn-secondary'%>
-
+ <%= link_to 'Back to all posts', posts_path, class: 'btn btn-secondary' %>
 <!--
 <ul>
   <% @posts.each do |post| %>
@@ -24,6 +23,9 @@
   <% end %>
 </div>
 -->
+
+<h1>Post</h1>
+
 <% @posts.each do |post| %>
   <div class="container mt-4 mb-4 p-3" style="max-width: 1200px;"> <!-- Increased max-width and padding -->
     <div class="card d-flex flex-column flex-md-row"> <!-- flex-column for small screens, flex-md-row for larger screens -->
@@ -44,3 +46,7 @@
     <hr style="height:2px; background-color:#ddd;">
   </div>
 <% end %>
+
+<br>
+<br>
+
