@@ -3,19 +3,9 @@ document.addEventListener("DOMContentLoaded", function() {
     textareas.forEach(textarea => {
       ClassicEditor
         .create(textarea, {
-        //   toolbar: ['bold', 'italic', 'link', 'undo', 'redo' ,  'heading' , 'uploadImage' , 'link', '|' , 
-        //     'blockQuote', 'codeBlock',]  
-        // })
-        toolbar: [ 'undo', 'redo',
-            '|', 'heading',
-            '|', 'fontfamily', 'fontsize', 'fontColor', 'fontBackgroundColor',
-            '|', 'bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'code',
-            '-', // break point
-            '|', 'alignment',
-            'link', 'uploadImage', 'blockQuote', 'codeBlock',
-            '|', 'bulletedList', 'numberedList', 'todoList', 'outdent', 'indent']  
+          toolbar: ['bold', 'italic', 'link', 'undo', 'redo' ,  'heading' , 'uploadImage' , 'link', '|' , 
+            'blockQuote', 'codeBlock',]  
         })
-
         .catch(error => {
           console.error(error);
         });

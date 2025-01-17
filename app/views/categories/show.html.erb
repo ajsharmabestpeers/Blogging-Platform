@@ -1,19 +1,11 @@
-
-<h1> Categories Show Page</h1>
-<h1><%= @category.name %> Posts</h1>
-<!--
-<% @posts.each do |post| %>
-  <div class="post">
-    <h2><%= link_to post.title, post_path(post) %></h2>
-    <p><%= post.body %></p>
-  </div>
-<% end %>
--->
 <div class="container mt-4">
+<h1><%= @category.name %> Posts</h1>
+<br>
 <%= link_to "New Post", new_post_path , class: "btn btn-primary" %>
 <% @posts.each do |post| %>
   <div class="container mt-4 mb-4 p-3" style="max-width: 1200px;"> 
     <div class="card d-flex flex-column flex-md-row">
+
       <!-- Post Content (Text and Title) -->
       <div class="card-body d-flex flex-column justify-content-between">
         <h3 class="card-title"><%= post.title %></h3>
@@ -25,8 +17,9 @@
       <% post.post_images.each do |image| %>
         <%= image_tag image ,style:"width:400px; height:250px;" %>
       <% end %>
-    <% end %>
+      <% end %>
     </div>
+
     <!-- Horizontal Divider -->
     <hr style="height:2px; background-color:#ddd;">
   </div>

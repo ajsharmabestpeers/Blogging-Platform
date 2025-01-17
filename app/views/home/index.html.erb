@@ -4,12 +4,12 @@
 <p>Find me in app/views/home/index.html.erb</p>
 <h1>Blogging Platform!</h1>
 <br>
-<% if user_signed_in? %> 
- <div> Welcome <%= current_user.email %> </div> 
-  <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
-<% else %>
-  <%= button_to "Sign in", new_user_session_path %> 
-<% end %>
+  <% if user_signed_in? %> 
+      <div> Welcome <%= current_user.email %> </div> 
+      <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
+  <% else %>
+      <%= button_to "Sign in", new_user_session_path %> 
+  <% end %>
 -->
 
 <div class="container mt-5">
@@ -24,9 +24,9 @@
       <div class="alert alert-info">
         Welcome <%= current_user.email %>
       </div>
-      <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: 'btn btn-danger mt-3' %>
+        <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: 'btn btn-danger mt-3' %>
     <% else %>
-      <%= button_to "Sign in", new_user_session_path, class: 'btn btn-primary mt-3' %>
+        <%= button_to "Sign in", new_user_session_path, class: 'btn btn-primary mt-3' %>
     <% end %>
   </div>
 </div>

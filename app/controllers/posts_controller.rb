@@ -15,23 +15,22 @@ class PostsController < ApplicationController
     #  end
     # end
 
-      def index
-        if params[:category_id]
-          @category = Category.find(params[:category_id])
-          @posts = @category.posts
-        else
-          @posts = Post.all
-        end
-        if params[:q].present?
-          @posts = @posts.where('title LIKE ? OR user_id IN (SELECT id FROM users WHERE email LIKE ?)', "%#{params[:q]}%", "%#{params[:q]}%")
-        end
-        @posts = @posts.page(params[:page]).per(5)
+    def index
+      if params[:category_id]
+        @category = Category.find(params[:category_id])
+        @posts = @category.posts
+      else
+        @posts = Post.all
       end
+        if params[:q].present?
+         @posts = @posts.where('title LIKE ? OR user_id IN (SELECT id FROM users WHERE email LIKE ?)', "%#{params[:q]}%", "%#{params[:q]}%")
+        end
+         @posts = @posts.page(params[:page]).per(5)
+    end
   
     def show
       # @post = Post.find_by(id: params[:id])
-       @post = Post.find(params[:id])
-      # Rails.logger.debug "Params: #{params.inspect}"
+      @post = Post.find(params[:id])
       @comments = @post.comments.includes(:user)
     
     end

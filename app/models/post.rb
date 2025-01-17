@@ -6,6 +6,13 @@ class Post < ApplicationRecord
   has_many :comments ,class_name: 'Comment',dependent: :destroy
   has_many_attached :post_images  
   belongs_to :category
+  
+  def next
+    Post.where("id > ?", id).order(id: :asc).limit(1).first
+  end
 
+  def prev
+    Post.where("id < ?", id).order(id: :desc).limit(1).first
+  end
   
 end
