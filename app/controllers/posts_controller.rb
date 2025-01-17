@@ -3,23 +3,37 @@ class PostsController < ApplicationController
   load_and_authorize_resource
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   
-    def index
-     if params[:category_id]
-      @category = Category.find(params[:category_id])
-      @posts = @category.posts
-     else
-      @posts = Post.all
-     if params[:q].present?
-        @posts = @posts.where('title LIKE ? OR user_id IN (SELECT id FROM users WHERE email LIKE ?)', "%#{params[:q]}%", "%#{params[:q]}%")
+    # def index
+    #  if params[:category_id]
+    #   @category = Category.find(params[:category_id])
+    #   @posts = @category.posts
+    #  else
+    #   @posts = Post.all
+    #  if params[:q].present?
+    #     @posts = @posts.where('title LIKE ? OR user_id IN (SELECT id FROM users WHERE email LIKE ?)', "%#{params[:q]}%", "%#{params[:q]}%")
+    #   end
+    #  end
+    # end
+
+      def index
+        if params[:category_id]
+          @category = Category.find(params[:category_id])
+          @posts = @category.posts
+        else
+          @posts = Post.all
+        end
+        if params[:q].present?
+          @posts = @posts.where('title LIKE ? OR user_id IN (SELECT id FROM users WHERE email LIKE ?)', "%#{params[:q]}%", "%#{params[:q]}%")
+        end
+        @posts = @posts.page(params[:page]).per(5)
       end
-     end
-    end
   
     def show
       # @post = Post.find_by(id: params[:id])
-      #  @post = Post.find(params[:id])
+       @post = Post.find(params[:id])
       # Rails.logger.debug "Params: #{params.inspect}"
       @comments = @post.comments.includes(:user)
+    
     end
     
     def new
@@ -64,6 +78,6 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     end
     def post_params
-      params.require(:post).permit(:title,:user_id,:body ,:post_images ,:category_id)
+      params.require(:post).permit(:title,:user_id,:body ,:post_images ,:category_id,:page)
     end
 end
