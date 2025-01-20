@@ -85,3 +85,14 @@
     <%= link_to 'Back to all posts', posts_path, class: 'btn btn-secondary' %>
   <% end %>
 </div>
+
+<div class="col-lg-8 offset-lg-2">
+<div class="d-flex justify-content-between mt-4 my-4">
+  <% if @previous_post %>
+     <%= link_to 'Previous Post: ' + @previous_post.title, post_path(@previous_post), class: 'btn btn-outline-primary' %>
+    <% end %>
+  <% if @next_post %>
+     <%= link_to 'Next Post: ' + @next_post.title, post_path(@next_post), class: 'btn btn-outline-primary' %>
+  <% end %>
+</div>
+</div>

@@ -61,8 +61,9 @@
                     </li>
 
                     <li class="nav-item">
-                      <%= link_to '<i class="fas fa-bell fs-4 mx-2">
-                      </i> Notification'.html_safe , new_post_path,class: "nav-link" %>
+                      <%= link_to '<i class="fa-solid fa-folder-plus fs-4 mx-2">
+                      </i> All Post'.html_safe , posts_path,class: "nav-link" %>
+                      
                     </li>
                    
                     <li class="nav-item dropdown">
@@ -75,7 +76,10 @@
                             <li><a class="dropdown-item" href="#">Blog</a></li>
                             <li><a class="dropdown-item" href="#">Admin</a></li>
                             <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">More options</a></li>
+                            <li><a class="dropdown-item" href="#">More options</a></li
+                            <li>
+                             <%= button_to "Sign out", destroy_user_session_path, method: :delete ,class:"dropdown-item"%>   
+                            </li>                    
                         </ul>
                     </li>
                 </ul>

@@ -31,6 +31,9 @@ class PostsController < ApplicationController
     def show
       # @post = Post.find_by(id: params[:id])
       @post = Post.find(params[:id])
+      @previous_post = Post.where("id < ?", @post.id).order(id: :desc).first
+      @next_post = Post.where("id > ?", @post.id).order(id: :asc).first
+ 
       @comments = @post.comments.includes(:user)
     
     end
