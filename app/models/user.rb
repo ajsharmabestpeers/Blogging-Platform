@@ -11,6 +11,6 @@ class User < ApplicationRecord
   after_initialize :set_default_role, if: :new_record?
   # set default role to user  if not set
   def set_default_role
-    self.role ||= :admin
+    self.role ||= :reader
   end
 end

@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
         before_action :set_category, only: %i[show edit update destroy]
+        before_action :authorize_admin, only: %i[new create edit update destroy] 
       
         def index
           @categories = Category.all
@@ -16,6 +17,7 @@ class CategoriesController < ApplicationController
         end
       
         def edit
+          render :new
         end
       
         def create
@@ -50,4 +52,11 @@ class CategoriesController < ApplicationController
         def category_params
           params.require(:category).permit(:name)
         end
+
+        def authorize_admin
+          unless current_user&.admin? || current_user&.author? 
+            redirect_to categories_path, alert: "You are not authorized to manage categories."
+          end
+        end
+
 end

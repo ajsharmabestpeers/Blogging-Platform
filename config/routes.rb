@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       resources :comments, only: [:create, :destroy ,:show , :edit, :update , :upload]
     end
     
-    resources :categories, only: [:index, :show, :new, :create] do
+    resources :categories, only: [:index, :show, :new, :create ,:destroy ,:edit ,:update] do
       resources :posts, only: [:index]
     end
   get 'home/index'

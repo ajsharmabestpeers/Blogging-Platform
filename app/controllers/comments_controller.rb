@@ -16,7 +16,6 @@ class CommentsController < ApplicationController
     end
 
     def show
-      @comment.destroy
       redirect_to @post, notice: 'Comment was successfully deleted.'
     end
     
@@ -25,14 +24,14 @@ class CommentsController < ApplicationController
     #     @comment = @post.comments.find(params[:id])
     #   end
 
-    # def destroy
-    #   if @comment.user == admin 
-    #     @comment.destroy
-    #     redirect_to @post, notice: 'Comment was successfully deleted.'
-    #   else
-    #     redirect_to @post, alert: 'You can only delete your own comments.'
-    #   end
-    # end
+    def destroy
+      if can? :destroy, @comment
+        @comment.destroy
+        redirect_to @post, notice: 'Comment was successfully deleted.' 
+      else
+        redirect_to posts_path, alert: 'You can only delete your own comments.'
+      end
+    end
 
     def update
       @comment = Comment.find(params[:id])
@@ -56,5 +55,3 @@ class CommentsController < ApplicationController
       params.require(:comment).permit(:commenter, :body)
     end
 end
-
-
