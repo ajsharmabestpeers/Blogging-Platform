@@ -1,7 +1,8 @@
 <!-- app/views/categories/index.html.erb -->
 <div class="container mt-4">
-
-  <%= link_to 'Create a New Category', new_category_path, class: 'btn btn-success mb-3' %>
+  <% if current_user && current_user.role == 'admin' %>
+     <%= link_to 'Create a New Category', new_category_path, class: 'btn btn-success mb-3' %>
+  <%end %>
   <div class="row">
     <% @categories.each do |category| %>
       <div class="col">
