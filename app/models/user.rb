@@ -10,7 +10,16 @@ class User < ApplicationRecord
   enum role: %i[reader author admin]
   after_initialize :set_default_role, if: :new_record?
   # set default role to user  if not set
+  after_create :send_welcome_email
+
+  private 
+  
   def set_default_role
     self.role ||= :reader
+  end
+  
+  def send_welcome_email
+    # UserMailer.welcome_email(self).deliver_later
+    UserMailer.welcome_email(self).deliver_now
   end
 end

@@ -1,5 +1,6 @@
-Welcome to BloggingPlateform, <%= @user.email %>
+Welcome to BloggingPlatform, <%= @user.email.split('@').first %>
 ===============================================
-You have successfully signed up to example.com,
-your username is: <%= @user.email %>.
+You have successfully signed up to BloggingPlatform,
+your username is: <%= @user.email.split('@').first %>
+your email is: <%= @user.email%>
 Thanks for joining and have a great day!
