@@ -18,8 +18,15 @@ class User < ApplicationRecord
     self.role ||= :reader
   end
   
+  # def send_welcome_email
+  #   # UserMailer.welcome_email(self).deliver_later
+  #   # UserMailer.welcome_email(self).deliver_now
+  # end
+
   def send_welcome_email
     # UserMailer.welcome_email(self).deliver_later
-    UserMailer.welcome_email(self).deliver_now
+    # UserMailer.welcome_email(self).deliver_now
+    # SendEmailsJob.perform_later(self).deliver_now
+    SendEmailsJob.set(wait: 1.minutes).perform_later(self)
   end
 end
