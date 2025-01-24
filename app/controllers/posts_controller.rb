@@ -46,6 +46,8 @@ class PostsController < ApplicationController
       # @post = Post.new
       @post = Post.new(post_params)
       if @post.save
+        # PostCreatedJob.perform_later(@post.self)
+        PostCreatedJob.set(wait: 1.seconds).perform_later(@post.user)
         redirect_to @post , notice: 'Post was successfully created.'
       else
         render 'new'

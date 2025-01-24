@@ -24,9 +24,7 @@ class User < ApplicationRecord
   # end
 
   def send_welcome_email
-    # UserMailer.welcome_email(self).deliver_later
-    # UserMailer.welcome_email(self).deliver_now
     # SendEmailsJob.perform_later(self).deliver_now
-    SendEmailsJob.set(wait: 1.minutes).perform_later(self)
+    SendEmailsJob.set(wait: 1.seconds).perform_later(self)
   end
 end
