@@ -1,0 +1,8 @@
+<h1>New Comment on Your Post</h1>
+<p>Hello <%= @user.email %>,</p>
+
+<p>A new comment was on your post "<%= @post.title %>":</p>
+<p>User Name : <%= @comment.user.email.split('@').first %></p>
+<p>Comment : <%= @comment.body %></p>
+
+<p>Your BloggingPlatform Team</p>

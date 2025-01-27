@@ -8,4 +8,11 @@ class UserMailer < ApplicationMailer
         @user = user
         mail(to: @user.email, subject: 'Your post was created successfully')
     end
+
+    def comment_notification(user, post, comment)
+        @user = user
+        @post = post
+        @comment = comment
+        mail(to: @user.email, subject: 'New comment on your post')
+      end
 end
