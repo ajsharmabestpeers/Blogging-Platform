@@ -75,11 +75,12 @@
                             <li><a class="dropdown-item" href="#">Profile</a></li>
                             <li><a class="dropdown-item" href="#">Blog</a></li>
                             <li><a class="dropdown-item" href="#">Admin</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">More options</a></li
+                            <li>
+                            <%= link_to 'My Posts', my_posts_path, class:"dropdown-item"%>
+                            </li> 
                             <li>
                              <%= button_to "Sign out", destroy_user_session_path, method: :delete ,class:"dropdown-item"%>   
-                            </li>                    
+                            </li>                   
                         </ul>
                     </li>
                 </ul>

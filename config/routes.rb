@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       resources :posts, only: [:index]
     end
   get 'home/index'
-  
+  get 'my_posts', to: 'posts#my_posts', as: 'my_posts'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

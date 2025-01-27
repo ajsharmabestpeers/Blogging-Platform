@@ -73,6 +73,10 @@ class PostsController < ApplicationController
         redirect_to posts_path, alert: 'You are not authorized to delete this post.'
       end
     end
+
+    def my_posts
+      @posts = current_user.posts.page(params[:page]).per(5)
+    end
     
     private
 
