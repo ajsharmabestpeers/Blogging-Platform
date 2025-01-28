@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     # delete 'posts/:id', to: 'posts#destroy'
 
     # resources :posts  
-  
+   resources :profiles, only: [:new, :create, :show, :edit, :update]
 
     # resources :posts, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
