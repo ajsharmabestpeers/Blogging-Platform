@@ -9,9 +9,10 @@ class ProfilesController < ApplicationController
     @profile = current_user.build_profile(profile_params)
     # @profile = Profile.new(profile_params)
     # @profile.user_id = current_user.id
-    @profile = Profile.new(profile_params)
-    @profile.user_id = current_user.id
     if @profile.save
+      if params[:profile][:image].present?
+        @profile.image.attach(params[:profile][:image])
+      end
       redirect_to profile_path(@profile), notice: 'Profile created successfully!'
     else
       render :new
@@ -41,6 +42,6 @@ class ProfilesController < ApplicationController
   private
 
   def profile_params
-    params.require(:profile).permit(:name, :email, :phone_number, :interest, :age, :dob, :city, :bio)
+    params.require(:profile).permit(:name, :email, :phone_number, :interest, :age, :dob, :city, :bio , :image)
   end
 end

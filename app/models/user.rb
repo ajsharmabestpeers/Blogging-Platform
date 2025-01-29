@@ -8,6 +8,9 @@ class User < ApplicationRecord
   has_many :comments , dependent: :destroy
   has_one :profile, dependent: :destroy
   
+  has_many :pictures, as: :imageable
+  has_one_attached :image
+  
   enum role: %i[reader author admin]
   after_initialize :set_default_role, if: :new_record?
   
