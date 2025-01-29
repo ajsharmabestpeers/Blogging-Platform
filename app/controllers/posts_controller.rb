@@ -21,6 +21,10 @@ class PostsController < ApplicationController
         @posts = @category.posts
       else
         @posts = Post.all
+        respond_to do |format|
+          format.html # default HTML view
+          format.csv { send_data Post.to_csv, filename: "posts-#{DateTime.now.strftime("%d%m%Y%H%M")}.csv" }
+        end
       end
         if params[:q].present?
          @posts = @posts.where('title LIKE ? OR user_id IN (SELECT id FROM users WHERE email LIKE ?)', "%#{params[:q]}%", "%#{params[:q]}%")

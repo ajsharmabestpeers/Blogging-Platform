@@ -84,8 +84,15 @@
                             <% end %>
                             </li>
                             <li>
+                            <% if user_signed_in?   %>
                             <%= link_to 'My Posts', my_posts_path, class:"dropdown-item"%>
+                            <% end %>
                             </li> 
+                            <li>
+                            <% if user_signed_in? && current_user.admin?  %>
+                            <%= link_to "Export to CSV", posts_path(format: 'csv') , class:"dropdown-item"%>
+                            <% end %>
+                            </li>
                             <li>
                              <%= button_to "Sign out", destroy_user_session_path, method: :delete ,class:"dropdown-item"%>   
                             </li>                   
