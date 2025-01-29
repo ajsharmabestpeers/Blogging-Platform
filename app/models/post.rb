@@ -15,4 +15,15 @@ class Post < ApplicationRecord
     Post.where("id < ?", id).order(id: :desc).limit(1).first
   end
   
+  require 'csv'
+
+  def self.to_csv
+    posts = all
+      CSV.generate(headers: true) do |csv|
+    csv << ['id', 'title', 'author_email', 'comments_count']
+    posts.each do |post|
+      csv << [post.id, post.title, post.user.email, post.comments.count]
+    end
+  end
+end
 end

@@ -1,0 +1,9 @@
+New Comment on Your Post
+
+Hello <%= @user.email %>,
+
+A new comment was on your post "<%= @post.title %>":
+User Name : <%= @comment.user.email.split('@').first %>
+Comment : <%= @comment.body %>
+
+Your BloggingPlatform Team

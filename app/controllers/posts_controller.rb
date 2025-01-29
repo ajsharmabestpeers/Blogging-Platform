@@ -21,6 +21,10 @@ class PostsController < ApplicationController
         @posts = @category.posts
       else
         @posts = Post.all
+        respond_to do |format|
+          format.html # default HTML view
+          format.csv { send_data Post.to_csv, filename: "posts-#{DateTime.now.strftime("%d%m%Y%H%M")}.csv" }
+        end
       end
         if params[:q].present?
          @posts = @posts.where('title LIKE ? OR user_id IN (SELECT id FROM users WHERE email LIKE ?)', "%#{params[:q]}%", "%#{params[:q]}%")
@@ -46,6 +50,8 @@ class PostsController < ApplicationController
       # @post = Post.new
       @post = Post.new(post_params)
       if @post.save
+        # PostCreatedJob.perform_later(@post.self)
+        PostCreatedJob.set(wait: 1.seconds).perform_later(@post.user)
         redirect_to @post , notice: 'Post was successfully created.'
       else
         render 'new'
@@ -70,6 +76,10 @@ class PostsController < ApplicationController
       else
         redirect_to posts_path, alert: 'You are not authorized to delete this post.'
       end
+    end
+
+    def my_posts
+      @posts = current_user.posts.page(params[:page]).per(5)
     end
     
     private

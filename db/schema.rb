@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_01_15_133749) do
+ActiveRecord::Schema[7.1].define(version: 2025_01_28_101553) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -57,6 +57,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_15_133749) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "pictures", force: :cascade do |t|
+    t.string "imageable_type", null: false
+    t.integer "imageable_id", null: false
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -65,6 +74,21 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_15_133749) do
     t.datetime "updated_at", null: false
     t.integer "category_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name"
+    t.string "email"
+    t.string "phone_number"
+    t.string "interest"
+    t.integer "age"
+    t.date "dob"
+    t.string "city"
+    t.text "bio"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -85,4 +109,5 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_15_133749) do
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "posts", "users"
+  add_foreign_key "profiles", "users"
 end

@@ -1,0 +1,27 @@
+<div class="container mt-1">
+  <h1 class="text-center">Profile</h1>
+  <div class="card p-3 position-relative" style="max-width: 800px; margin: 0 auto;">
+    <div class="profile-details">
+      <p><strong>Name:</strong> <%= @profile.name %></p>
+      <p><strong>Email:</strong> <%= @profile.email %></p>
+      <p><strong>Phone Number:</strong> <%= @profile.phone_number %></p>
+      <p><strong>Interest:</strong> <%= @profile.interest %></p>
+      <p><strong>Age:</strong> <%= @profile.age %></p>
+      <p><strong>Date of Birth:</strong> <%= @profile.dob %></p>
+      <p><strong>City:</strong> <%= @profile.city %></p>
+      <p><strong>Bio:</strong> <%= @profile.bio %></p>
+    </div>
+
+    <% if @profile.image.attached? %>
+      <div class="profile-image position-absolute top-0 end-0 mt-2 me-2">
+        <%= image_tag @profile.image, class: 'img-fluid rounded-circle', alt: 'Profile Image', style: 'max-width: 300px;' %>
+      </div>
+    <% else %>
+      <p>No profile image uploaded.</p>
+    <% end %>
+  </div>
+  
+  <div class="text-center mt-3">
+    <%= link_to 'Edit Profile', edit_profile_path(@profile), class: 'btn btn-warning btn-sm' %>
+  </div>
+</div>

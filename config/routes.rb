@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     # delete 'posts/:id', to: 'posts#destroy'
 
     # resources :posts  
-  
+   resources :profiles, only: [:new, :create, :show, :edit, :update]
 
     # resources :posts, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       resources :posts, only: [:index]
     end
   get 'home/index'
+  get 'my_posts', to: 'posts#my_posts', as: 'my_posts'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -28,4 +29,7 @@ Rails.application.routes.draw do
   root to: "home#index" 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
 end
