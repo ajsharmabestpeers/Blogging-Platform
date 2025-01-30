@@ -14,5 +14,5 @@ class UserMailer < ApplicationMailer
         @post = post
         @comment = comment
         mail(to: @user.email, subject: 'New comment on your post')
-      end
+    end
 end

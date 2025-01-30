@@ -6,8 +6,7 @@
     <div class="field">
       <%= form.label :category_id %>
       <%= form.collection_select :category_id, Category.all, :id, :name, prompt: "Select a Category" %>
-  
-  </div>
+    </div>
   
     <div class="mb-4">
       <%= form.label :title, class: "form-label" %>

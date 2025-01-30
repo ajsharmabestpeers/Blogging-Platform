@@ -62,7 +62,7 @@ class PostsController < ApplicationController
     end
     
     def update
-      if @post.update(post_params)
+      if @post.update(post_params.except(:user_id))
         redirect_to @post , notice: 'Post was successfully updated.'
       else
         render :edit, status: :unprocessable_entity

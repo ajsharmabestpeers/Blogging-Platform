@@ -24,6 +24,7 @@ class Post < ApplicationRecord
     posts.each do |post|
       csv << [post.id, post.title, post.user.email, post.comments.count]
     end
+    end
   end
-end
+  
 end

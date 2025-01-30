@@ -53,8 +53,7 @@
                 <!-- <% end %>  -->
                    
                     <li class="nav-item">
-                      <%= link_to '<i class="fa-solid fa-signs-post fs-4 mx-2">
-                      </i> All Cat...'.html_safe , categories_path,class: "nav-link" %>
+                      <%= link_to '<i class="fa-solid fa-signs-post fs-4 mx-2"></i> All Cat...'.html_safe , categories_path,class: "nav-link" %>
                     </li>
                     <li class="nav-item">
                       <%= link_to '<i class="fas fa-pencil-alt fs-4 mx-2"></i> Write'.html_safe, new_post_path, class: "nav-link" %>
@@ -62,8 +61,7 @@
 
                     <li class="nav-item">
                       <%= link_to '<i class="fa-solid fa-folder-plus fs-4 mx-2">
-                      </i> All Post'.html_safe , posts_path,class: "nav-link" %>
-                      
+                      </i> All Post'.html_safe , posts_path,class: "nav-link" %>  
                     </li>
                    
                     <li class="nav-item dropdown">
@@ -72,7 +70,12 @@
                             <i class="fas fa-user-circle fs-4 mx-2"></i> Profile
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Blog</a></li>
+                            <% if user_signed_in? %>
+                            <h5> Hiii - <%= current_user.email.split('@').first %></h5>
+                            <% end %>
+                            <li>
+                            <%= link_to 'Blog', posts_path, class:"dropdown-item"%>
+                            </li> 
                             <li><a class="dropdown-item" href="#">Admin</a></li>
                             <li>
                             <% if user_signed_in? %>
@@ -81,10 +84,8 @@
                             <% else %>
                               <%= link_to 'Create Profile', new_profile_path ,class:"dropdown-item"%> 
                             <% end %>
-                            <% end %>
                             </li>
                             <li>
-                            <% if user_signed_in?   %>
                             <%= link_to 'My Posts', my_posts_path, class:"dropdown-item"%>
                             <% end %>
                             </li> 
@@ -94,7 +95,11 @@
                             <% end %>
                             </li>
                             <li>
-                             <%= button_to "Sign out", destroy_user_session_path, method: :delete ,class:"dropdown-item"%>   
+                            <% if user_signed_in? %>
+                              <%= button_to "Sign out", destroy_user_session_path, method: :delete ,class:"dropdown-item"%>   
+                            <% else %>
+                              <%= link_to "Sign in", new_user_session_path, class: "dropdown-item" %>
+                            <%  end %>
                             </li>                   
                         </ul>
                     </li>

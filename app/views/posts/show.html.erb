@@ -1,4 +1,4 @@
-<div class="container mt-4">
+<div class="container mt-3">
   <% if @post %>
     <div class="row">
       <div class="col-lg-8 offset-lg-2">
@@ -10,7 +10,7 @@
         </div>
         </br>
         <% unless current_user.reader? %>
-        <% if @post.user_id == current_user.id %> 
+        <% if @post.user_id == current_user.id || current_user.admin? %> 
           <ul class="list-unstyled">
             <li>
               <%= link_to "Edit", edit_post_path(@post), class: 'btn btn-warning' %>
@@ -23,7 +23,7 @@
       <% end %>
     
     <!-- Title -->
-    <div class=" col-lg-8 offset-lg-2">
+    <div class=" col-lg-10 offset-lg-1">
         <h2 class="text-center"><%= @post.title %></h2>
         <p class="lead"><%= @post.body.gsub(/<[^>]*>/, '')%></p>
     </div>
@@ -31,7 +31,7 @@
     <!-- Post Images -->
         <% if @post.post_images.attached? %>
           <div class="row">
-            <div class="col-lg-8 offset-lg-2">
+            <div class="col-lg-10 offset-lg-1">
               <h3>Images</h3>
               <% @post.post_images.each do |image| %>
                 <div class="mb-3">
@@ -87,20 +87,22 @@
 </div>
 
 <hr class="mt-5" style="width: 50%; margin: 0 auto; height: 2px; background-color: #000;">
-<div class="row mb-3 mt-3 justify-content-center align-items-center">
-<div class="col-1 text-center">
-<% if @post.user.profile && @post.user.profile.image.attached? %>
-<%= image_tag @post.user.profile.image, class: 'img-fluid rounded-circle', alt: 'Profile Image', style: 'width: 50px; height: 50px; object-fit: cover;' %>
 
-<% else %>
-<%= image_tag 'default_profile_image.jpg', class: 'img-fluid rounded-circle', alt: 'Default Profile Image', style: 'width: 50px; height: 50px; object-fit: cover;' %>
-<% end %>
+<div class="row mb-3 mt-3 justify-content-center align-items-center">
+  <div class="col-1 text-center">
+    <% if @post.user.profile && @post.user.profile.image.attached? %>
+      <%= image_tag @post.user.profile.image, class: 'img-fluid rounded-circle', alt: 'Profile Image', style: 'width: 50px; height: 50px; object-fit: cover;' %>
+    <% else %>
+      <p>No profile image uploaded.</p>
+    <% end %>
+  </div>
+
+  <div class="col-4 text-center">
+    <h4>Written by - <%= @post.user.email.split('@').first %></h4>
+    <h4>Post - <%= @post.title %></h4>
+  </div>
 </div>
-<div class="col-4 text-center">
-<h4>Written by - <%= @post.user.email.split('@').first %></h4>
-<h4> Post - <%= @post.title %></h4>
-</div>
-</div>
+
 <hr style="width: 50%; margin: 0 auto; height: 2px; background-color: #000;">
 
 <div class="col-lg-8 offset-lg-2">

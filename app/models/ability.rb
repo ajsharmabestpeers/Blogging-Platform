@@ -35,7 +35,6 @@ class Ability
       can :manage, Category, user_id:user.id
     elsif user.author?  # Author manage own posts (create,edit , update, destroy)
       can :manage, Post 
-      # can :manage , Comment
       can :manage, Comment
       can :manage, Category
     else
